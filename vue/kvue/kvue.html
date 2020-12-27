@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>kvue</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{counter}}</p>
+        <p>{{counter}}</p>
+        <p k-text="counter"></p>
+        <p k-html="desc"></p>
+        <button @click="counter = 1">初始化counter</button>
+        <input k-model="inputValue">
+        <p @click="initCounter(1)">input: {{inputValue}}</p>
+    </div>
+    <script src="kvue3.js"></script>
+    <script>
+        let timer;
+        const app = new KVue({
+            el: "#app",
+            data: {
+                counter: 1,
+                desc: '<span style="color:red">村长真棒</span>',
+                inputValue: '11'
+            },
+            methods: {
+                initCounter(num) {
+                    this.counter = num;
+                }
+            }
+        });
+        timer = setInterval(() => {
+            app.counter++;
+        }, 1000);
+    </script>
+</body>
+</html>
